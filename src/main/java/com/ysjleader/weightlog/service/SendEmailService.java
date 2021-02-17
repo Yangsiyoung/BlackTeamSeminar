@@ -1,12 +1,14 @@
 package com.ysjleader.weightlog.service;
 
-import com.ysjleader.weightlog.dto.request.SignUpRequestDTO;
-import com.ysjleader.weightlog.event.SignUpEvent;
+import com.ysjleader.weightlog.dto.SendEMailDTO;
+import com.ysjleader.weightlog.event.VerifyEmailEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
+
+import javax.mail.MessagingException;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -25,12 +27,12 @@ public class SendEmailService {
      */
     private final SimpleMailService simpleMailService;
 
-    @EventListener(SignUpEvent.class)
-    public void sendSignUpEmail(ApplicationEvent event) {
-        SignUpEvent signUpEvent = (SignUpEvent) event;
-        SignUpRequestDTO signUpRequestDTO = signUpEvent.getSignUpRequestDTO();
+    @EventListener(VerifyEmailEvent.class)
+    public void sendSignUpEmail(ApplicationEvent event) throws MessagingException {
+        VerifyEmailEvent verifyEmailEvent = (VerifyEmailEvent) event;
+        SendEMailDTO sendEMailDTO = verifyEmailEvent.getSendEMailDTO();
         log.info("##### SEND SIGNUP EMAIL#####");
-        log.info("User ID is {}", signUpRequestDTO.getUserID());
-        simpleMailService.sendSignUpMail(signUpRequestDTO);
+        log.info("Email is {}", sendEMailDTO.getEmail());
+        simpleMailService.sendSignUpMail(sendEMailDTO);
     }
 }

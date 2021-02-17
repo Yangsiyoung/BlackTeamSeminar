@@ -1,24 +1,24 @@
 package com.ysjleader.weightlog.event;
 
-import com.ysjleader.weightlog.dto.request.SignUpRequestDTO;
+import com.ysjleader.weightlog.dto.SendEMailDTO;
 import lombok.Getter;
 import org.springframework.context.ApplicationEvent;
 
 @Getter
-public class SignUpEvent extends ApplicationEvent {
-    private SignUpRequestDTO signUpRequestDTO;
+public class VerifyEmailEvent extends ApplicationEvent {
+    private SendEMailDTO sendEMailDTO;
     /**
      * Create a new {@code ApplicationEvent}.
      *
      * @param source the object on which the event initially occurred or with
      *               which the event is associated (never {@code null})
      */
-    public SignUpEvent(Object source) {
+    public VerifyEmailEvent(Object source) {
         super(source);
     }
 
-    public SignUpEvent(Object source, SignUpRequestDTO signUpRequestDTO) {
+    public VerifyEmailEvent(Object source, SendEMailDTO sendEMailDTO) {
         super(source);
-        this.signUpRequestDTO = signUpRequestDTO;
+        this.sendEMailDTO = sendEMailDTO;
     }
 }
