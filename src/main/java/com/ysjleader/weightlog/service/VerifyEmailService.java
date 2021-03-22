@@ -24,9 +24,9 @@ public class VerifyEmailService {
     private final RestTemplate restTemplate = new RestTemplate();
 
     public void sendEmail(VerifyEmailRequestDTO verifyEmailRequestDTO) {
-        VerifyEmailEvent verifyEmailEvent = new VerifyEmailEvent(this, new SendEMailDTO(verifyEmailRequestDTO.getEmail(), jwtService.create(verifyEmailRequestDTO)));
-        executorService.execute(() -> eventPublisher.publishEvent(verifyEmailEvent));
-        executorService.shutdown();
+//        VerifyEmailEvent verifyEmailEvent = new VerifyEmailEvent(this, new SendEMailDTO(verifyEmailRequestDTO.getEmail(), jwtService.create(verifyEmailRequestDTO)));
+//        executorService.execute(() -> eventPublisher.publishEvent(verifyEmailEvent));
+//        executorService.shutdown();
     }
 
     /**
